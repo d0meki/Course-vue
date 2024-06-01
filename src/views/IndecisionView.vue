@@ -5,13 +5,20 @@
       <span>Mi esposa</span>
     </div>
 
-    <ChartMeesages />
+    <ChartMeesages :messages="messages" />
 
-    <MessagesBox />
+    <MessagesBox @send-message="onMessage" />
   </div>
 </template>
 
 <script setup lang="ts">
+
+import { useChat } from '@/composables/useChat';
 import ChartMeesages from '../components/chat/ChatMessages.vue'
 import MessagesBox from '../components/chat/MessagesBox.vue'
+
+
+const { messages, onMessage } = useChat();
+
+
 </script>

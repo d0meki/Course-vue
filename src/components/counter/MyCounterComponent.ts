@@ -1,5 +1,5 @@
 import { defineComponent, computed, ref } from 'vue'
-import { useCounter } from '../composables/userCounter'
+import { useCounter } from '../../composables/userCounter'
 export default defineComponent({
     // import { userCounter } from "../composables/userCounter";
     // const { counter, squareCounter } = userCounter();
