@@ -13,7 +13,7 @@
 
 <script setup lang="ts">
 
-import { useChat } from '@/composables/useChat';
+import { useChat } from '@/modules/chatyesno/composables/useChat';
 import ChartMeesages from '../components/chat/ChatMessages.vue'
 import MessagesBox from '../components/chat/MessagesBox.vue'
 

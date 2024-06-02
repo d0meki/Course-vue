@@ -3,7 +3,7 @@
   <!-- <IndecisionView /> -->
   <!-- <CounterComponent :value="5" /> -->
   <!-- <CounterScript :value="5" /> -->
-  <PokemonGame />
+  <PokemonGame/>
 </template>
 
 <script lang="ts" setup>
