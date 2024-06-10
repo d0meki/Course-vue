@@ -1,26 +1,68 @@
 <template>
   <div class="flex flex-col h-screen">
     <!-- Header -->
-    <header class="flex items-center h-14 px-4 border-b border-gray-300 sm:h-16 md:px-6 lg:px-8">
-      <div>
-        <a class="flex items-center gap-2 font-semibold" href="#">
-          <!-- <img alt="Vue logo" class="logo" src="" width="40" height="40" /> -->
-        </a>
-      </div>
-      <nav class="flex-col ml-auto space-x-4 flex items-end h-10 sm:space-x-6">
-        <div class="space-x-4">
-          <RouterLink :to="{ name: 'home' }"> Home </RouterLink>
-          <!-- <RouterLink to="/features" exact-active-class="underline font-semibold" > Features </RouterLink> -->
-          <RouterLink to="/features"> Features </RouterLink>
-          <RouterLink to="/pricing"> Pricing </RouterLink>
-          <RouterLink to="/contact"> Contact </RouterLink>
-        </div>
-        <div class="space-x-4">
-          <RouterLink to="/auth"> Login </RouterLink>
-          <RouterLink to="/pokemon/1"> Pokémons </RouterLink>
-        </div>
-      </nav>
-    </header>
+    <div class="bg-white">
+      <header class="absolute inset-x-0 top-0 z-50">
+        <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+          <div class="flex lg:flex-1">
+            <a href="#" class="-m-1.5 p-1.5">
+              <span class="sr-only">Your Company</span>
+              <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
+            </a>
+          </div>
+          <div class="flex lg:hidden">
+            <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+              @click="mobileMenuOpen = true">
+              <span class="sr-only">Open main menu</span>
+              <Bars3Icon class="h-6 w-6" aria-hidden="true" />
+            </button>
+          </div>
+          <div class="hidden lg:flex lg:gap-x-12">
+            <!-- <DropDownMenu /> -->
+            <FlyOutMenu />
+            <!-- <a v-for="item in navigation" :key="item.name" :href="item.href" class="text-sm font-semibold leading-6 text-gray-900">{{ item.name }}</a> -->
+            <RouterLink v-for="item in navigation" :key="item.name" :to="item.href"
+              class="text-sm font-semibold leading-6 text-gray-900"> {{ item.name }} </RouterLink>
+          </div>
+          <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+            <RouterLink to="/auth" class="text-sm font-semibold leading-6 text-gray-900">Log in <span
+                aria-hidden="true">&rarr;</span></RouterLink>
+          </div>
+        </nav>
+        <Dialog class="lg:hidden" @close="mobileMenuOpen = false" :open="mobileMenuOpen">
+          <div class="fixed inset-0 z-50" />
+          <DialogPanel
+            class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+            <div class="flex items-center justify-between">
+              <a href="#" class="-m-1.5 p-1.5">
+                <span class="sr-only">Your Company</span>
+                <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
+              </a>
+              <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700" @click="mobileMenuOpen = false">
+                <span class="sr-only">Close menu</span>
+                <XMarkIcon class="h-6 w-6" aria-hidden="true" />
+              </button>
+            </div>
+            <div class="mt-6 flow-root">
+              <div class="-my-6 divide-y divide-gray-500/10">
+                <div class="space-y-2 py-6">
+                  <!-- <a v-for="item in navigation" :key="item.name" :href="item.href" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">{{ item.name }}</a> -->
+                  <RouterLink v-for="item in navigation" :key="item.name" :to="item.href"
+                    class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                    {{ item.name }} </RouterLink>
+                </div>
+                <div class="py-6">
+                  <!-- <a href="#" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log in</a> -->
+                  <RouterLink to="/auth"
+                    class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                    Log in</RouterLink>
+                </div>
+              </div>
+            </div>
+          </DialogPanel>
+        </Dialog>
+      </header>
+    </div>
     <!-- Fin Header -->
 
     <!-- Main -->
@@ -44,5 +86,20 @@
 </template>
 
 <script lang="ts" setup>
+import { ref } from 'vue'
+import { Dialog, DialogPanel } from '@headlessui/vue'
+import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
+import FlyOutMenu from '../components/FlyOutMenu.vue';
+// import DropDownMenu from '../components/DropDownMenu.vue'
+const navigation = [
+  { name: 'Home', href: '/' },
+  { name: 'Features', href: '/features' },
+  { name: 'Pricing', href: '/pricing' },
+  // { name: 'Contact', href: '/contact' },
+  { name: 'Proyectos', href: '/proyects' },
+  { name: 'Pokemon', href: '/pokemon/1' },
+]
 
+
+const mobileMenuOpen = ref(false)
 </script>

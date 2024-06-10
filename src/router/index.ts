@@ -44,6 +44,17 @@ const route = createRouter({
           },
           component: () => import('@/modules/pokemons/pages/PokemonPage.vue'),
         },
+        {
+          path: '/proyects',
+          name: 'proyects',
+          component: () => import('@/modules/projects/pages/ProyectsPage.vue'),
+        },
+        {
+          path: '/project/:id',
+          name: 'project',
+          component: () => import('@/modules/projects/pages/ProjectView.vue'),
+          props: true,
+        },
       ],
     },
     {
